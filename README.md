@@ -1,5 +1,8 @@
 # u-boot-nanopct4
 
+TLDR -- if you are just looking for NanoPC-T4 u-boot images for the NanoPC-T4,
+you can download them [here](vendor/images).
+
 After many attempts, I have not been able to get a working u-boot for the
 NanoPC-T4 using the upstream u-boot source code. I
 [reported this issue](https://lists.denx.de/pipermail/u-boot/2021-January/437950.html)
