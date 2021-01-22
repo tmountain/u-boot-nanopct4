@@ -26,14 +26,17 @@ The Nix build is a work in progress, but in the meantime, the following instruct
 how to build u-boot images from inside of an x86 Ubuntu/Focal docker container.
 
 ```
+$ docker run -ti ubuntu:focal
 # apt-get update
 
-# apt-get install build-essential flex bison gcc-aarch64-linux-gnu git \
+# apt-get -y install build-essential flex bison gcc-aarch64-linux-gnu git \
   device-tree-compiler python3 gcc-arm-none-eabi bc
+
+# cd /root
 
 # git clone https://github.com/tmountain/u-boot-nanopct4
 
-# cd u-boot-2020.10/
+# cd u-boot-nanopct4
 
 # make CROSS_COMPILE=aarch64-linux-gnu- nanopc-t4-rk3399_defconfig
 # make u-boot-dtb.bin CROSS_COMPILE=aarch64-linux-gnu-
