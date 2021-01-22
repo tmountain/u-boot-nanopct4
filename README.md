@@ -32,6 +32,8 @@ $ docker run -ti ubuntu:focal
 # apt-get -y install build-essential flex bison gcc-aarch64-linux-gnu git \
   device-tree-compiler python3 gcc-arm-none-eabi bc
 
+# cd /root
+
 # git clone https://github.com/tmountain/u-boot-nanopct4
 
 # cd u-boot-2020.10/
