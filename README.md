@@ -38,7 +38,7 @@ how to build u-boot images from inside of an x86 Ubuntu/Focal docker container.
 # make CROSS_COMPILE=aarch64-linux-gnu- nanopc-t4-rk3399_defconfig
 # make u-boot-dtb.bin CROSS_COMPILE=aarch64-linux-gnu-
 
-# tools/mkimage -n rk3399 -T rksd -d vendor/rkbin/blobs/rk3399_bl31_v1.30.elf idbloader.bin
+# tools/mkimage -n rk3399 -T rksd -d vendor/rkbin/blobs/rk3399_ddr_800MHz_v1.24.bin idbloader.bin
 # cat vendor/rkbin/blobs/rk3399_miniloader_v1.19.bin >> idbloader.bin
 
 # export PATH=$PATH:`pwd`/vendor/rkbin/bin
