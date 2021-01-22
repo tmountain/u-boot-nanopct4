@@ -25,7 +25,7 @@ This repository is the result of that work and represents two distinct goals:
 The Nix build is a work in progress, but in the meantime, the following instructions detail
 how to build u-boot images from inside of an x86 Ubuntu/Focal docker container.
 
-```shell
+```
 # apt-get update
 
 # apt-get install build-essential flex bison gcc-aarch64-linux-gnu git \
