@@ -36,7 +36,7 @@ $ docker run -ti ubuntu:focal
 
 # git clone https://github.com/tmountain/u-boot-nanopct4
 
-# cd u-boot-2020.10/
+# cd u-boot-nanopct4
 
 # make CROSS_COMPILE=aarch64-linux-gnu- nanopc-t4-rk3399_defconfig
 # make u-boot-dtb.bin CROSS_COMPILE=aarch64-linux-gnu-
