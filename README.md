@@ -23,9 +23,9 @@ This repository is the result of that work and represents two distinct goals:
 * Establishing a basis by which a Nix u-boot can be built for this specific SoC.
 
 The Nix build is a work in progress, but in the meantime, the following instructions detail
-how to build u-boot images from inside of an Ubuntu/Focal docker container.
+how to build u-boot images from inside of an x86 Ubuntu/Focal docker container.
 
-```bash
+```shell
 # apt-get update
 
 # apt-get install build-essential flex bison gcc-aarch64-linux-gnu git \
@@ -35,17 +35,18 @@ how to build u-boot images from inside of an Ubuntu/Focal docker container.
 
 # cd u-boot-2020.10/
 
-make CROSS_COMPILE=aarch64-none-linux-gnu- nanopc-t4-rk3399_defconfig
-make u-boot-dtb.bin CROSS_COMPILE=aarch64-none-linux-gnu-
+# make CROSS_COMPILE=aarch64-linux-gnu- nanopc-t4-rk3399_defconfig
+# make u-boot-dtb.bin CROSS_COMPILE=aarch64-linux-gnu-
 
-tools/mkimage -n rk3399 -T rksd -d ../rkbin-tools/rk33/rk3399_ddr_800MHz_v1.24.bin idbloader.bin
-cat ../rkbin-tools/rk33/rk3399_miniloader_v1.19.bin >> idbloader.bin
+# tools/mkimage -n rk3399 -T rksd -d vendor/rkbin/blobs/rk3399_bl31_v1.30.elf idbloader.bin
+# cat vendor/rkbin/blobs/rk3399_miniloader_v1.19.bin >> idbloader.bin
 
-trust_merger  --replace bl31.elf  ../rkbin-tools/rk33/rk3399_bl31_v1.30.elf trust.ini
-loaderimage --pack --uboot ./u-boot-dtb.bin uboot.img
+# export PATH=$PATH:`pwd`/vendor/rkbin/bin
+# trust_merger --replace bl31.elf vendor/rkbin/blobs/rk3399_bl31_v1.30.elf trust.ini
+# loaderimage --pack --uboot ./u-boot-dtb.bin uboot.img
 
-dd if=idbloader.bin of=/dev/mmcblk2 seek=64 conv=notrunc
-dd if=uboot.img of=/dev/mmcblk2 seek=16384 conv=notrunc
-dd if=trust.bin of=/dev/mmcblk2 seek=24576 conv=notrunc
-sync
+# dd if=idbloader.bin of=/dev/mmcblk2 seek=64 conv=notrunc
+# dd if=uboot.img of=/dev/mmcblk2 seek=16384 conv=notrunc
+# dd if=trust.bin of=/dev/mmcblk2 seek=24576 conv=notrunc
+# sync
 ```
