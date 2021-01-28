@@ -1,19 +1,20 @@
-{ stdenv, fetchFromGitHub, patchelf, makeWrapper }:
+{ pkgs ? import <nixpkgs> {} }:
 
 let
+  nixpkgs = import pkgs.path { system = "x86_64-linux"; };
   board = "NanoPC-T4";
 in
-stdenv.mkDerivation {
+nixpkgs.stdenv.mkDerivation {
   name = "armbian-rkbin-${board}";
 
-  src = fetchFromGitHub {
+  src = nixpkgs.fetchFromGitHub {
     rev = "3bd0321cae5ef881a6005fb470009ad5a5d1462d";
     owner = "armbian";
     repo = "rkbin";
     sha256 = "09r4dzxsbs3pff4sh70qnyp30s3rc7pkc46v1m3152s7jqjasp31";
   };
 
-  nativeBuildInputs = [ patchelf makeWrapper ];
+  nativeBuildInputs = [ nixpkgs.patchelf nixpkgs.makeWrapper ];
 
   dontBuild = true;
   dontStrip = true;
@@ -46,7 +47,7 @@ stdenv.mkDerivation {
     done
   '';
 
-  meta = with stdenv.lib; {
+  meta = with nixpkgs.stdenv.lib; {
     description = "Proprietary bits from Rockchip used by Rockchip for ${board}";
     license = licenses.unfree;
   };
