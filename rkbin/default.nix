@@ -20,14 +20,12 @@ stdenv.mkDerivation {
 
   installPhase = ''
     TOOLS=(
-      tools/boot_merger
       tools/firmwareMerger
       tools/kernelimage
       tools/loaderimage
       tools/mkkrnlimg
       tools/rkdeveloptool
       tools/trust_merger
-      tools/upgrade_tool
     )
 
     for tool in "''${TOOLS[@]}"; do
